@@ -1,10 +1,10 @@
 {
   "name": "domain_checker",
   "version": "1.0.0",
-  "description": "",
+  "description": "This Node.js CLI script takes a list of strings in a text file and tests all combinations of pairs, outputting a list of (possibly) unregistered \".com\" domains.",
   "main": "domain_check.js",
-  "author": "",
-  "license": "ISC",
+  "author": "Daniel \"Klokie\" Grossfeld.",
+  "license": "MIT",
   "dependencies": {
     "dns": "^0.2.2",
     "lodash": "^4.6.1",

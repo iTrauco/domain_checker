@@ -63,10 +63,12 @@ function formatNames(prefixes, tld) {
         // don't make it too long…
         var len = domain.length;
 
-        if (len >= minlength && len <= maxlength) {
-          checkAvailable(domain);
+        if (len < minlength) {
+          console.error(new Error(`skipping domain (too short): ${domain}`));
+        } else if (len > maxlength) {
+          console.error(new Error(`skipping domain (too long): ${domain}`));
         } else {
-          console.error(new Error("skipping domain (too short): " + domain));
+          checkAvailable(domain);
         }
       }
     }
@@ -87,7 +89,7 @@ function checkDNS(name) {
         checkWhois(name);
 
       } else {
-        console.error(new Error("unhandled error: " + err.errno + " for " + name));
+        console.error(new Error(`unhandled error: ${err.errno} for name`));
       }
     } else if (showRegistered) {
       console.log(`addresses: ${JSON.stringify(addresses)}`);
@@ -115,11 +117,11 @@ function checkWhois(name) {
       if (err) {
         console.error(new Error(name));
       } else {
-        if (_.isEmpty(data)) {
+        if (_.isEmpty(data) || typeof data.Registrar === 'undefined') {
           outstring = name;
           console.log(outstring);
         } else {
-          console.error(new Error(name + " is already registered"));
+          console.error(new Error(`${name} is already registered`));
         }
       }
     });
