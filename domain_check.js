@@ -24,7 +24,7 @@ var showRegistered = false,
  */
 loadFile(filename, function(error, lines) {
   if (error) {
-    return console.err(new Error(error));
+    return console.error(new Error(error));
   }
 
   formatNames(lines, tld);
@@ -66,7 +66,7 @@ function formatNames(prefixes, tld) {
         if (len >= minlength && len <= maxlength) {
           checkAvailable(domain);
         } else {
-          console.err(new Error("skipping domain (too short): " + domain));
+          console.error(new Error("skipping domain (too short): " + domain));
         }
       }
     }
@@ -87,7 +87,7 @@ function checkDNS(name) {
         checkWhois(name);
 
       } else {
-        console.err(new Error("unhandled error: " + err.errno + " for " + name));
+        console.error(new Error("unhandled error: " + err.errno + " for " + name));
       }
     } else if (showRegistered) {
       console.log(`addresses: ${JSON.stringify(addresses)}`);
@@ -113,18 +113,18 @@ function checkWhois(name) {
       var outstring = '';
 
       if (err) {
-        console.err(new Error(name));
+        console.error(new Error(name));
       } else {
         if (_.isEmpty(data)) {
           outstring = name;
           console.log(outstring);
         } else {
-          console.err(new Error(name + " is already registered"));
+          console.error(new Error(name + " is already registered"));
         }
       }
     });
 
   } catch (ex) {
-    console.err(ex);
+    console.error(ex);
   }
 }
