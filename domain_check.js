@@ -2,6 +2,9 @@
 
 /**
  * check a list of domains, list ones that are currently unregistered
+ *
+ * Usage: `node domain_check.js strings.txt`
+ *
  * initial code prototype idea from
  * https://limpet.net/mbrubeck/2010/01/13/si-unit-domains-node-js.html
  */
