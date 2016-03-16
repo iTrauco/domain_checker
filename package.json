@@ -1,0 +1,13 @@
+{
+  "name": "domain_checker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "domain_check.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dns": "^0.2.2",
+    "lodash": "^4.6.1",
+    "whois-ux": "0.0.2"
+  }
+}
